@@ -1,0 +1,12 @@
+
+<form (submit)="onSubmit()" #formData='ngForm'>
+	Note: <input type="text" name="note" [(ngModel)]="note.note" required minlength="3" #note_note='ngModel'>
+	<input type="submit" value="Add Note" [disabled]="formData.invalid">
+</form>
+<span style="color: red" *ngIf="note_note.errors?.required && note_note.dirty">Note is required, bro.</span>
+<span style="color: red" *ngIf="note_note.errors?.minlength && note_note.dirty">Write more than 3 characters, bro.</span>
+
+<div>
+<p *ngFor="let x of notes"> {{x.note}} <span style="float: right;"> {{x.createdAt | date:'longDate'}}, {{x.createdAt | date:'mediumTime'}} </span><br><hr></p>
+
+</div>
